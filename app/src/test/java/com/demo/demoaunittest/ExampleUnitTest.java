@@ -14,14 +14,15 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class ExampleUnitTest {
     @Before
-    public void before(){
+    public void before() {
         //在测试前的工作
     }
+
     @After
-    public void after()
-    {
-       // 测试完成后的工作
+    public void after() {
+        // 测试完成后的工作
     }
+
     @Test
     public void addition_isCorrect() {
         //主要工作

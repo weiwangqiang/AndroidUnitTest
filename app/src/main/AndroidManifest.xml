@@ -30,12 +30,18 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".MenuActivity" >
+        <activity android:name=".MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".provider.BookProvider"
+            android:authorities="com.example.test.BookProvider"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
