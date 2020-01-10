@@ -1,4 +1,4 @@
-package com.demo.demoaunittest;
+package com.demo.demoaunittest.robolectric;
 
 import android.content.ContentValues;
 import android.database.Cursor;

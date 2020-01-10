@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 public class BookProvider extends ContentProvider {
-    Uri mUri;
     public static final String AUTHORITY = "com.example.test.BookProvider";
 
     private UriMatcher mUriMatcher;
@@ -25,7 +24,10 @@ public class BookProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Implement this to handle requests to delete one or more rows.
-        return bookSqLite.getWritableDatabase().delete(getTableName(uri), selection, selectionArgs);
+        SQLiteDatabase db = bookSqLite.getWritableDatabase();
+        int res = db.delete(getTableName(uri), selection, selectionArgs);
+        db.close();
+        return res;
     }
 
     @Override
@@ -37,8 +39,10 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        bookSqLite.getWritableDatabase().insert(getTableName(uri), null, values);
+        SQLiteDatabase db = bookSqLite.getWritableDatabase();
+        db.insert(getTableName(uri), null, values);
         getContext().getContentResolver().notifyChange(uri, null);
+        db.close();
         return uri;
     }
 
@@ -66,6 +70,7 @@ public class BookProvider extends ContentProvider {
         // TODO: Implement this to handle requests to update one or more rows.
         SQLiteDatabase db = bookSqLite.getWritableDatabase();
         db.update(getTableName(uri), values, selection, selectionArgs);
+        db.close();
         return 0;
     }
 
